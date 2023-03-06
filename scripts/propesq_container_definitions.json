@@ -1,0 +1,96 @@
+[
+  {
+      "name": "propesq",
+      "image": "808868468341.dkr.ecr.us-east-1.amazonaws.com/propesqweb_ecr:latest",
+      "portMappings": [
+          {"protocol": "tcp", "containerPort": 80, "hostPort": 0}
+      ],
+      "memoryReservation": 1024,
+      "environment": [
+        {
+            "name": "DATABASE_DRIVER",
+            "value": "pdo_pgsql"
+          },
+          {
+            "name": "DATABASE_HOST",
+            "value": "prod-propesq-db.crlwkqxlop3x.us-east-1.rds.amazonaws.com"
+          },
+          {
+            "name": "DATABASE_NAME",
+            "value": "postgres"
+          },
+          {
+            "name": "DATABASE_PASSWORD",
+            "value": "sSaWe7gejXWAEmd3z8wAvg87aSRsuq7y"
+          },
+          {
+            "name": "DATABASE_PORT",
+            "value": "5432"
+          },
+          {
+            "name": "DATABASE_USER",
+            "value": "postgres"
+          },
+          {
+            "name": "EXPORTACAO_DIR",
+            "value": "/var/www/storage/exportacao_shapefile_dir_files/"
+          },
+          {
+            "name": "GEOSERVER_ENDPOINT",
+            "value": "http://alb-propesq-861573336.us-east-1.elb.amazonaws.com:8080/geoserver/"
+          },
+          {
+            "name": "GOOGLE_MAPS_API_KEY",
+            "value": "AIzaSyDX7STfHmdJx8G9ZX6xMr6m5t-GUgPxH0Q"
+          },
+          {
+            "name": "IMPORT_MEMORY_LIMIT",
+            "value": "2048M"
+          },
+          {
+            "name": "IMPORT_TIME_LIMIT",
+            "value": "0"
+          },
+          {
+            "name": "LOCALE",
+            "value": "pt"
+          },
+          {
+            "name": "MAILER_HOST",
+            "value": "localhost"
+          },
+          {
+            "name": "MAILER_PASSWORD",
+            "value": ""
+          },
+          {
+            "name": "MAILER_TRANSPORT",
+            "value": "smtp"
+          },
+          {
+            "name": "SECRET",
+            "value": "329dd262ae72ece5c05ab13261b0497e815bfc59"
+          },
+          {
+            "name": "SYMFONY_ENV",
+            "value": "prod"
+          }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/propesqweb",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "mountPoints": [
+        {
+          "containerPath": "/var/www/storage",
+          "sourceVolume": "propesqweb"
+        }
+      ],
+      "networkMode": "bridge"
+  }
+]

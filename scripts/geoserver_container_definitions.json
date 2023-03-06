@@ -1,0 +1,71 @@
+[
+  {
+      "name": "geoserver",
+      "image": "808868468341.dkr.ecr.us-east-1.amazonaws.com/geoserver_ecr:latest",
+      "portMappings": [
+          {
+              "containerPort": 8080,
+              "hostPort": 0,
+              "protocol": "tcp"
+          }
+      ],
+      "memoryReservation": 2048,
+      "essential": true,
+      "environment": [
+          {
+              "name": "POSTGIS_HOST",
+              "value": "prod-propesq-db.crlwkqxlop3x.us-east-1.rds.amazonaws.com"
+          },
+          {
+              "name": "POSTGIS_USER",
+              "value": "postgres"
+          },
+          {
+              "name": "GEOWEBCACHE_CACHE_DIR",
+              "value": "/opt/geoserver/data_dir/gwc"
+          },
+          {
+              "name": "POSTGIS_PASS",
+              "value": "sSaWe7gejXWAEmd3z8wAvg87aSRsuq7y"
+          },
+          {
+              "name": "ENABLE_JSONP",
+              "value": "true"
+          },
+          {
+              "name": "FOOTPRINTS_DATA_DIR",
+              "value": "/opt/footprints_dir"
+          },
+          {
+              "name": "OPTIMIZE_LINE_WIDTH",
+              "value": "false"
+          },
+          {
+              "name": "GEOSERVER_DATA_DIR",
+              "value": "/opt/geoserver/data_dir"
+          },
+          {
+              "name": "MAX_FILTER_RULES",
+              "value": "20"
+          },
+          {
+              "name": "teste",
+              "value": "teste"
+          }
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/opt/geoserver/data_dir",
+          "sourceVolume": "geoserver"
+        }
+      ],
+      "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+              "awslogs-group": "/ecs/geoserver",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "ecs"
+          }
+      }
+  }
+]
