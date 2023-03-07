@@ -1,6 +1,6 @@
 resource "aws_subnet" "subnetwork" {
-  availability_zone       = var.project_region
-  cidr_block              = "10.10.20.0/24"
+  availability_zone       = "${var.project_region}a"
+  cidr_block              = var.cidr
   map_public_ip_on_launch = var.is_public
 
   tags = {

@@ -8,7 +8,7 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_security_group" "security_group" {
-  description = "sg-${var.project_name}-ec2"
+  description = "${var.project_name}-sg-ec2"
 
   egress {
     cidr_blocks = ["0.0.0.0/0"]
@@ -20,7 +20,7 @@ resource "aws_security_group" "security_group" {
   ingress {
     from_port       = 0
     protocol        = "tcp"
-    security_groups = [aws_security_group.alb.id]
+    #security_groups = [aws_security_group.alb.id]
     to_port         = 65535
   }
   ingress {
@@ -33,11 +33,11 @@ resource "aws_security_group" "security_group" {
   }
 
 
-  name = "sg-${var.project_name}-ec2"
+  name = "${var.project_name}-sg-ec2"
 
   tags = {
     Env  = var.environment
-    Name = "sg-${var.project_name}-ec2"
+    Name = "${var.project_name}-sg-ec2"
   }
 
   vpc_id = aws_vpc.vpc.id
